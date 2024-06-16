@@ -1,0 +1,20 @@
+.animate--show-heading {
+    animation-name: animation;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-duration: 1ms;
+    animation-timeline: scroll();
+    animation-range: entry 0% cover 30%;
+}
+
+@keyframes animation {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(30px);
+        opacity: 100;
+    }
+}

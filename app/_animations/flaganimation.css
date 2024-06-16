@@ -1,0 +1,20 @@
+.animate--flag-movement {
+    animation-name: flag-movement;
+    animation-duration: 1s;
+    animation-timing-function: cubic-bezier(1, 0.19, 0.98, 1);
+    animation-delay: 1s;
+}
+
+@keyframes flag-movement {
+    0% {
+        transform: translateX(-100%)
+    }
+
+    70% {
+        transform: translateX(20px)
+    }
+
+    100% {
+        transform: translateX(0%)
+    }
+}
