@@ -5,7 +5,7 @@ const Flag = () => {
       <img
         src="/icons/pk.svg"
         alt=""
-        className="w-[200px] shadow-xl rounded -translate-x-1 animate--flag-movement"
+        className="w-[200px] shadow-xl rounded -translate-x-1"
       />
     </div>
   );

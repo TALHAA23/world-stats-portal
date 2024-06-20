@@ -12,7 +12,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <nav className="w-full h-[60px] bg-green-500">navbar</nav>
+        <nav className="color3 w-full h-[60px]">navbar</nav>
         {children}
       </body>
     </html>
