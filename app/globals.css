@@ -95,7 +95,6 @@ body {
     @apply text-[--color1]
 }
 
-
 .text-color2 {
     @apply text-[--color2]
 }

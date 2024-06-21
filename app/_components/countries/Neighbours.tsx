@@ -6,14 +6,13 @@ import { useEffect, useRef } from "react";
 const Neighbours = () => {
   const titleRef = useRef(null);
   const countriesListRef = useRef<null | HTMLDivElement>(null);
-  useEffect(() => {
-    const el = titleRef.current;
-    if (!el) return;
-    const undoAnimation = showHeadingAnimation(el);
-    countriesListRef.current &&
-      showListItemsAnimation(countriesListRef.current);
-    return () => undoAnimation();
-  }, []);
+  // useEffect(() => {
+  //   const element = titleRef.current;
+  //   if (!element) return;
+  //   showHeadingAnimation(element);
+  //   countriesListRef.current &&
+  //     showListItemsAnimation(countriesListRef.current);
+  // }, []);
 
   return (
     <section
