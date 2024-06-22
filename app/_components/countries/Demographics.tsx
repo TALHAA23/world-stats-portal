@@ -6,9 +6,9 @@ const Demographics = () => {
   const titleRef = useRef(null);
   const contentRef = useRef(null);
   useEffect(() => {
-    titleRef.current && showHeadingAnimation(titleRef.current);
-    contentRef.current &&
-      showSectionDetailsOneByOneAnimation(contentRef.current);
+    // titleRef.current && showHeadingAnimation(titleRef.current);
+    // contentRef.current &&
+    //   showSectionDetailsOneByOneAnimation(contentRef.current);
   }, []);
   return (
     <section className="color1 text-color10 w-full h-auto text-white py-9 px-2">

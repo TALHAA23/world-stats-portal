@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import Head from "../_components/countries/Head";
 import Neighbours from "../_components/countries/Neighbours";
 import Demographics from "../_components/countries/Demographics";
+import CulturalPractices from "../_components/countries/CulturalPractices";
 
 // export const generateMetadata = async () => {
 //   const response = await fetch("http://localhost:3000/api/ipinfo");
@@ -13,7 +14,7 @@ import Demographics from "../_components/countries/Demographics";
 //   };
 // };
 
-// TODO: Currently Area, population, latlng,iDD
+// TODO: Currently car side, continents, currency, idd, independent, startofweek, subregion, timezone, unmember
 
 const page = () => {
   // useEffect(() => {
@@ -30,6 +31,7 @@ const page = () => {
       <Head />
       <Neighbours />
       <Demographics />
+      <CulturalPractices />
     </div>
   );
 };
