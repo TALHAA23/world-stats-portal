@@ -130,3 +130,7 @@ body {
 .text-color10 {
     @apply text-[--color10]
 }
+
+.red-text-gradient {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-red-600 via-red-700 to-red-900;
+}

@@ -1,18 +1,15 @@
 import showHeadingAnimation from "@/app/_animations/showHeading";
 import showListItemsAnimation from "@/app/_animations/showListItemsAnimation";
-import anime from "animejs";
 import { useEffect, useRef } from "react";
 
 const Neighbours = () => {
   const titleRef = useRef(null);
   const countriesListRef = useRef<null | HTMLDivElement>(null);
-  // useEffect(() => {
-  //   const element = titleRef.current;
-  //   if (!element) return;
-  //   showHeadingAnimation(element);
-  //   countriesListRef.current &&
-  //     showListItemsAnimation(countriesListRef.current);
-  // }, []);
+  useEffect(() => {
+    titleRef.current && showHeadingAnimation(titleRef.current);
+    countriesListRef.current &&
+      showListItemsAnimation(countriesListRef.current);
+  }, []);
 
   return (
     <section
