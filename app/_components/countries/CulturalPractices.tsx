@@ -23,14 +23,16 @@ const information = [
     "Asia",
   ],
 ];
+const icons = Array(information.length).fill(
+  "/icons/" + "united-nations-svgrepo-com.svg"
+);
 
 const CulturalPractices = () => {
   const titleRef = useRef(null);
   const contentRef = useRef(null);
   useEffect(() => {
     titleRef.current && showHeadingAnimation(titleRef.current);
-    const undoHightlightWordAnimation =
-      contentRef.current && hightlightWord(contentRef.current);
+    contentRef.current && hightlightWord(contentRef.current);
   }, []);
 
   return (
@@ -43,21 +45,39 @@ const CulturalPractices = () => {
         ref={contentRef}
         className=" text-2xl text-justify mx-auto my-20 w-[80%] max-w-[500px] font-bold"
       >
-        {information.map((info) =>
-          info.map((subInfo, index) =>
-            subInfo
-              .split(" ")
-              .map((word) => <span className=" opacity-10">{word} </span>)
-          )
-        )}
-        {/* Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nulla, beatae
-        repellat! Amet fuga consequuntur sint cum, error eum labore fugiat
-        facilis soluta iusto minima voluptas molestiae expedita eligendi
-        corporis aliquam! Consectetur natus et vitae quod officia voluptatibus
-        necessitatibus obcaecati voluptatem? */}
+        {CreateWords(information)}
       </div>
     </section>
   );
 };
+
+const CreateWords = (information: string[][]) =>
+  information.map((info) =>
+    info.map((subInfo, index) =>
+      (index == 0 ? subInfo.split(" ") : [subInfo]).map((word) => (
+        <span
+          className={`relative  ${
+            index == 1 && "green-text-gradient special-parent"
+          }`}
+        >
+          {word}{" "}
+          {index == 1 && word.length > 0 && (
+            <>
+              <span
+                id="custom-underline"
+                className=" absolute h-[1px] w-full bg-yellow-800 rounded-full left-0 border-2  border-white bottom-0 shadow-[0_0_2px_#A9A9A9,inset_0_0_2px_#A9A9A9,0_0_5px_#D1D1D1,0_0_15px_#D1D1D1,0_0_30px_#D1D1D1]"
+              ></span>
+              <img
+                id="icon-to-bubble-up"
+                src={icons[index]}
+                alt="icon"
+                className=" absolute w-7 aspect-square -top-2 left-1/2 -translate-x-1/2 "
+              />
+            </>
+          )}
+        </span>
+      ))
+    )
+  );
 
 export default CulturalPractices;
