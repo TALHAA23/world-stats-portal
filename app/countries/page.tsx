@@ -5,6 +5,8 @@ import Head from "../_components/countries/Head";
 import Neighbours from "../_components/countries/Neighbours";
 import Demographics from "../_components/countries/Demographics";
 import CulturalPractices from "../_components/countries/CulturalPractices";
+import Names from "../_components/countries/Names";
+import Capital from "../_components/countries/Capital";
 
 // export const generateMetadata = async () => {
 //   const response = await fetch("http://localhost:3000/api/ipinfo");
@@ -32,6 +34,9 @@ const page = () => {
       <Neighbours />
       <Demographics />
       <CulturalPractices />
+      <Names />
+      <Capital />
+      <div className="h-screen"></div>
     </div>
   );
 };

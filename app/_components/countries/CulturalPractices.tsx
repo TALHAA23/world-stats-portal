@@ -22,6 +22,7 @@ const information = [
     "Don't forget to pack your sense of adventure for this captivating continent",
     "Asia",
   ],
+  ["where a multitude of languages like", "English, urdu and arabic"],
 ];
 const icons = Array(information.length).fill(
   "/icons/" + "united-nations-svgrepo-com.svg"
@@ -31,8 +32,8 @@ const CulturalPractices = () => {
   const titleRef = useRef(null);
   const contentRef = useRef(null);
   useEffect(() => {
-    titleRef.current && showHeadingAnimation(titleRef.current);
-    contentRef.current && hightlightWord(contentRef.current);
+    // titleRef.current && showHeadingAnimation(titleRef.current);
+    // contentRef.current && hightlightWord(contentRef.current);
   }, []);
 
   return (
