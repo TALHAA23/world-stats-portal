@@ -1,9 +1,6 @@
 import shatteredAndIntactWordAnimation from "@/app/_animations/shatteredAndIntactWord";
 import showHeadingAnimation from "@/app/_animations/showHeading";
-import controlAnimationByScroll from "@/app/_lib/controlAnimationByScroll";
-import debounce from "@/app/_lib/debounce";
-import throttle from "@/app/_lib/throttle";
-import anime from "animejs";
+
 import { useEffect, useRef } from "react";
 
 const Capital = () => {
@@ -11,14 +8,8 @@ const Capital = () => {
   const targetWordRef = useRef(null);
   useEffect(() => {
     titleRef.current && showHeadingAnimation(titleRef.current);
-    if (!targetWordRef.current) return;
-    const animation = shatteredAndIntactWordAnimation(targetWordRef.current);
-    // window.addEventListener("scroll", () =>
-    //   controlAnimationByScroll(targetWordRef.current, animation)
-    // );
-    // window.addEventListener("scroll", () =>
-    //   throttle(targetWordRef.current, animation, controlAnimationByScroll)
-    // );
+    targetWordRef.current &&
+      shatteredAndIntactWordAnimation(targetWordRef.current);
   }, []);
   return (
     <section className="color4 text-color7 w-full h-auto overflow-hidden text-white py-9 px-2">
@@ -27,7 +18,7 @@ const Capital = () => {
       </h1>
       <div
         ref={targetWordRef}
-        className="w-full flex items-center justify-center my-40 text-8xl font-bold capitalize"
+        className="w-full flex items-center justify-center my-40 text-6xl sm:text-8xl font-bold capitalize"
       >
         {"islamabad".split("").map((char) => (
           <span>{char}</span>

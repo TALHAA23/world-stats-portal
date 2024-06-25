@@ -1,12 +1,9 @@
 import anime from "animejs";
+import controlAnimationByScroll from "../_lib/controlAnimationByScroll";
 
-const shatteredAndIntactWordAnimation = (
-  element: HTMLElement
-): anime.AnimeInstance => {
+const shatteredAndIntactWordAnimation = (element: HTMLElement) => {
   const animation = createAnimation(element);
-  //   createObserver(element, animation);
-  observer.observe(element);
-  return animation;
+  createObserver(element, animation);
 };
 
 const createAnimation = (element: HTMLElement) => {
@@ -14,29 +11,22 @@ const createAnimation = (element: HTMLElement) => {
     targets: element.querySelectorAll("span"),
     translateX: () => [anime.random(-200, 200), 0],
     translateY: () => [anime.random(-200, 200), 0],
+    rotate: () => [`${anime.random(-120, 120)}deg`, "0deg"],
     autoplay: false,
   });
   return animation;
 };
 
-const observer = new IntersectionObserver((entries) => {
-  let scrollListener = null; // Initialize scroll listener variable outside the loop
-
-  if (entries[0].isIntersecting) {
-    if (!scrollListener) {
-      // Check if scroll listener already exists
-      scrollListener = window.addEventListener("scroll", () => {
-        console.log("Hello");
-      });
-    }
-  } else {
-    console.log("NIO");
-    if (scrollListener) {
-      // Ensure scroll listener exists before removing
-      window.removeEventListener("scroll", scrollListener);
-      scrollListener = null;
-    }
-  }
-});
-
+const createObserver = (
+  element: HTMLElement,
+  animation: anime.AnimeInstance
+) => {
+  const callback = () => controlAnimationByScroll(element, animation);
+  const observer = new IntersectionObserver((entries) => {
+    entries[0].isIntersecting
+      ? window.addEventListener("scroll", callback)
+      : window.removeEventListener("scroll", callback);
+  });
+  observer.observe(element);
+};
 export default shatteredAndIntactWordAnimation;
