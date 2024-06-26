@@ -1,10 +1,19 @@
 import showHeadingAnimation from "@/app/_animations/showHeading";
 import showSectionDetailsOneByOneAnimation from "@/app/_animations/showSectionDetailsOneByOne";
+import { useCountryData } from "@/app/_hooks/countryDataProvider";
+import calculateXpercentofY from "@/app/_utils/calculateXpercentofY";
+import BigNumber from "bignumber.js";
 import { useEffect, useRef } from "react";
 
+const WORLD_POPULATION = new BigNumber(8117700882);
 const Demographics = () => {
   const titleRef = useRef(null);
   const contentRef = useRef(null);
+  const data = useCountryData();
+  const populationPercentage = calculateXpercentofY(
+    data?.population,
+    WORLD_POPULATION
+  );
   useEffect(() => {
     // titleRef.current && showHeadingAnimation(titleRef.current);
     // contentRef.current &&
@@ -22,10 +31,10 @@ const Demographics = () => {
         <div id="speical-parent">
           <p
             id="numbers"
-            data-number="23984723489"
+            data-number={data?.population}
             className="text-5xl sm:text-7xl font-bold red-text-gradient"
           >
-            23984723489
+            {data?.population}{" "}
           </p>
           <div
             id="custom-underline"
@@ -41,10 +50,10 @@ const Demographics = () => {
         >
           <div
             id="progress-bar"
-            data-complete-percentage={84}
+            data-complete-percentage={populationPercentage}
             className="absolute rounded-full h-full bg-green-700 left-0 z-0"
           ></div>
-          <p className=" z-10">23% of world population</p>
+          <p className=" z-10">{populationPercentage}% of world population</p>
         </div>
         <p data-delay="true" className="font-bold text-8xl text-center">
           In An
@@ -55,10 +64,10 @@ const Demographics = () => {
         <div id="speical-parent">
           <p
             id="numbers"
-            data-number={7849}
+            data-number={data?.area}
             className="text-5xl sm:text-7xl font-bold red-text-gradient"
           >
-            7858
+            {data?.area}
           </p>
           <div
             id="custom-underline"
@@ -76,10 +85,10 @@ const Demographics = () => {
             <h1 className="text-2xl sm:text-5xl font-bold ">Langitude</h1>
             <div>
               <p
-                data-number="34"
+                data-number={data?.latlng[0]}
                 className="text-5xl sm:text-7xl font-bold red-text-gradient"
               >
-                34
+                {data?.latlng[0]}
               </p>
               <div
                 id="custom-underline"
@@ -92,10 +101,10 @@ const Demographics = () => {
             <h1 className="text-2xl sm:text-5xl font-bold ">Langitude</h1>
             <div>
               <p
-                data-number="51"
+                data-number={data?.latlng[1]}
                 className="text-5xl sm:text-7xl font-bold red-text-gradient text-right"
               >
-                51
+                {data?.latlng[1]}{" "}
               </p>
               <div
                 id="custom-underline"

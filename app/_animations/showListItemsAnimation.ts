@@ -1,5 +1,5 @@
 import anime from "animejs";
-import getRandomNumber from "../_lib/getRandomNumber";
+import getRandomNumber from "../_utils/getRandomNumber";
 
 const ANIMATION_DURATION = 1000;
 const showListItemsAnimation = (element: HTMLElement) => {

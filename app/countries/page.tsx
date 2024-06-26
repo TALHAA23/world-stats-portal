@@ -1,45 +1,14 @@
-"use client";
-import { useEffect } from "react";
-
-import Head from "../_components/countries/Head";
-import Neighbours from "../_components/countries/Neighbours";
-import Demographics from "../_components/countries/Demographics";
-import CulturalPractices from "../_components/countries/CulturalPractices";
-import Names from "../_components/countries/Names";
-import Capital from "../_components/countries/Capital";
-import CoatofArms from "../_components/countries/CoatofArms";
-
+import Components from "./component";
+import fetcher from "../_lib/fetcher";
 // export const generateMetadata = async () => {
-//   const response = await fetch("http://localhost:3000/api/ipinfo");
-//   const data = response.ok ? await response.json() : false;
+//   const currentCountry = await fetcher("api/ipinfo");
 //   return {
-//     title: data?.country || "Countries",
+//     title: currentCountry?.country || "Countries",
 //   };
 // };
 
-// TODO: Currently car side, continents, currency, idd, independent, startofweek, subregion, timezone, unmember
-
 const page = () => {
-  // useEffect(() => {
-  //   const getCountry = async () => {
-  //     const response = await fetch(
-  //       "https://restcountries.com/v3.1/name/pakistan"
-  //     );
-  //     console.log(await response.json());
-  //   };
-  //   getCountry();
-  // }, []);
-  return (
-    <div>
-      <Head />
-      <Neighbours />
-      <Demographics />
-      <CulturalPractices />
-      <Names />
-      <Capital />
-      <CoatofArms />
-    </div>
-  );
+  return <Components />;
 };
 
 export default page;

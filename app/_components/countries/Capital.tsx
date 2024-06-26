@@ -20,8 +20,8 @@ const Capital = () => {
         ref={targetWordRef}
         className="w-full flex items-center justify-center my-40 text-6xl sm:text-8xl font-bold capitalize"
       >
-        {"islamabad".split("").map((char) => (
-          <span>{char}</span>
+        {"islamabad".split("").map((char, index) => (
+          <span key={char}>{char}</span>
         ))}
       </div>
     </section>

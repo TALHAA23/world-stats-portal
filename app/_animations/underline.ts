@@ -3,7 +3,7 @@ import anime from "animejs";
 const underlineAnimation = (
   element: Element | NodeList,
   delay: number,
-  customization: anime.AnimeAnimParams
+  customization?: anime.AnimeAnimParams
 ) =>
   anime({
     targets: element,
