@@ -8,16 +8,6 @@ const createAnimation = (element: HTMLElement) => {
   Array.from(element.children).forEach((el, index) => {
     const calulatedDelay = index * 200;
     startSubAnimations(el, calulatedDelay);
-    // if (el.classList.contains("special-parent")) {
-    //   const customUnderlineEl = el.querySelector("#custom-underline");
-    //   const iconBubbleupEl = el.querySelector("#icon-to-bubble-up");
-    //   customUnderlineEl &&
-    //     underlineAnimation(customUnderlineEl, calulatedDelay, {
-    //       duration: 1000,
-    //       easing: "easeInOutExpo",
-    //     });
-    //   iconBubbleupEl && bubbleupAnimation(iconBubbleupEl, calulatedDelay);
-    // }
     const animation = anime({
       targets: el,
       opacity: [0.1, 1],

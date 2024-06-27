@@ -5,7 +5,9 @@ const gridAnimation = (
   textElement: HTMLElement,
   names: string[]
 ) => {
-  createAnimation(element, textElement, names);
+  const animation = createAnimation(element, textElement, names);
+  createObserver(animation).observe(element);
+  return () => anime.remove(animation);
 };
 const createAnimation = (
   element: HTMLElement,
@@ -27,7 +29,12 @@ const createAnimation = (
       index = index > names.length - 2 ? 0 : index + 1;
     },
   });
-  animation.play();
+  return animation;
 };
+
+const createObserver = (animation: anime.AnimeInstance) =>
+  new IntersectionObserver((entries) =>
+    entries[0].isIntersecting ? animation.play() : animation.pause()
+  );
 
 export default gridAnimation;

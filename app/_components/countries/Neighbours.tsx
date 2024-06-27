@@ -10,9 +10,11 @@ const Neighbours = () => {
 
   useEffect(() => {
     titleRef.current && showHeadingAnimation(titleRef.current);
-    countriesListRef.current &&
+    const undoAnimation =
+      countriesListRef.current &&
       showListItemsAnimation(countriesListRef.current);
-  }, []);
+    return () => (undoAnimation ? undoAnimation() : undefined);
+  }, [borders]);
 
   return (
     <section

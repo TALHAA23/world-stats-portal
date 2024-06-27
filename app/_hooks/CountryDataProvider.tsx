@@ -14,18 +14,21 @@ export const useCountryDataUpdater = () => useContext(CountryDataContext)[1];
 
 const CountryDataProvider = ({ children }: { children: ReactNode }) => {
   const [data, setData] = useState([]);
-
   const updateData = async (countryName: string) => {
-    const name = countryName || (await fetcher("api/ipinfo")).country;
+    const name = countryName;
     const data = await getCountryInformation(name);
-    console.clear();
-    console.log(data);
     setData(data);
   };
 
-  // useEffect(() => {
-  //   if (data?.name?.common) document.title = data.name.common;
-  // }, [data]);
+  useEffect(() => {
+    const showCurrentCountry = async () => {
+      const currentCoutnry = (await fetcher("api/ipinfo"))?.country;
+      const data =
+        currentCoutnry && (await getCountryInformation(currentCoutnry));
+      currentCoutnry && setData(data);
+    };
+    showCurrentCountry();
+  }, []);
 
   return (
     <CountryDataContext.Provider value={[data, updateData]}>

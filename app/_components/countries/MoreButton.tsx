@@ -2,7 +2,6 @@ import React from "react";
 
 const MoreButton = () => {
   const moveToSection1 = () => {
-    console.log("ijh");
     const section = document.querySelector("#section1-of-countries-page");
     const refArea = section?.getClientRects()[0].top || 0;
     window.scrollTo(0, refArea);

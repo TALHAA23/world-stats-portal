@@ -1,23 +1,21 @@
 import showHeadingAnimation from "@/app/_animations/showHeading";
 import showSectionDetailsOneByOneAnimation from "@/app/_animations/showSectionDetailsOneByOne";
 import { useCountryData } from "@/app/_hooks/countryDataProvider";
-import calculateXpercentofY from "@/app/_utils/calculateXpercentofY";
-import BigNumber from "bignumber.js";
+import calculatePercentage from "@/app/_utils/calculatePercentage";
 import { useEffect, useRef } from "react";
 
-const WORLD_POPULATION = new BigNumber(8117700882);
+// const WORLD_POPULATION = new BigNumber(8117700882);
+const WORLD_POPULATION = 8117700882;
 const Demographics = () => {
   const titleRef = useRef(null);
   const contentRef = useRef(null);
   const data = useCountryData();
-  const populationPercentage = calculateXpercentofY(
-    data?.population,
-    WORLD_POPULATION
-  );
+  const populationPercentage =
+    calculatePercentage(data?.population, WORLD_POPULATION) || 0;
   useEffect(() => {
-    // titleRef.current && showHeadingAnimation(titleRef.current);
-    // contentRef.current &&
-    //   showSectionDetailsOneByOneAnimation(contentRef.current);
+    titleRef.current && showHeadingAnimation(titleRef.current);
+    contentRef.current &&
+      showSectionDetailsOneByOneAnimation(contentRef.current);
   }, []);
   return (
     <section className="color1 text-color10 w-full h-auto text-white py-9 px-2">
@@ -46,12 +44,12 @@ const Demographics = () => {
         </p>
         <div
           id="speical-parent"
-          className="relative  my-4 w-full max-w-[400px] h-9 border-2 border-green-300  shadow-[0_0_2px_#2EF88C,inset_0_0_2px_#2EF88C,0_0_5px_#2EF88C,0_0_15px_#9EEBBE,0_0_30px_#9EEBBE] rounded-full flex items-center justify-center"
+          className="relative overflow-hidden my-4 w-full max-w-[400px] h-9 border-2 border-green-300  shadow-[0_0_2px_#2EF88C,inset_0_0_2px_#2EF88C,0_0_5px_#2EF88C,0_0_15px_#9EEBBE,0_0_30px_#9EEBBE] rounded-full flex items-center justify-center"
         >
           <div
             id="progress-bar"
             data-complete-percentage={populationPercentage}
-            className="absolute rounded-full h-full bg-green-700 left-0 z-0"
+            className="absolute h-full bg-green-700 left-0 z-0"
           ></div>
           <p className=" z-10">{populationPercentage}% of world population</p>
         </div>

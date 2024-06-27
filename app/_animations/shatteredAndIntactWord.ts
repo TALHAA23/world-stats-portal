@@ -4,6 +4,7 @@ import controlAnimationByScroll from "../_lib/controlAnimationByScroll";
 const shatteredAndIntactWordAnimation = (element: HTMLElement) => {
   const animation = createAnimation(element);
   createObserver(element, animation);
+  return () => anime.remove(animation);
 };
 
 const createAnimation = (element: HTMLElement) => {

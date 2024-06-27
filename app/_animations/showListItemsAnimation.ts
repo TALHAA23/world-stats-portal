@@ -5,6 +5,7 @@ const ANIMATION_DURATION = 1000;
 const showListItemsAnimation = (element: HTMLElement) => {
   const animation = createAnimation(element);
   createObserver(element, animation);
+  return () => anime.remove(animation);
 };
 
 const createAnimation = (parentElement: HTMLElement) => {
