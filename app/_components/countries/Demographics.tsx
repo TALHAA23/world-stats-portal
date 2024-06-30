@@ -1,10 +1,9 @@
 import showHeadingAnimation from "@/app/_animations/showHeading";
 import showSectionDetailsOneByOneAnimation from "@/app/_animations/showSectionDetailsOneByOne";
-import { useCountryData } from "@/app/_hooks/countryDataProvider";
+import { useCountryData } from "@/app/_hooks/CountryDataProvider";
 import calculatePercentage from "@/app/_utils/calculatePercentage";
 import { useEffect, useRef } from "react";
 
-// const WORLD_POPULATION = new BigNumber(8117700882);
 const WORLD_POPULATION = 8117700882;
 const Demographics = () => {
   const titleRef = useRef(null);

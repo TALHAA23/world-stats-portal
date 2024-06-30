@@ -1,7 +1,8 @@
 import showHeadingAnimation from "@/app/_animations/showHeading";
 import showListItemsAnimation from "@/app/_animations/showListItemsAnimation";
-import { useCountryData } from "@/app/_hooks/countryDataProvider";
+import { useCountryData } from "@/app/_hooks/CountryDataProvider";
 import { useEffect, useRef } from "react";
+import NoResult from "./NoResult";
 
 const Neighbours = () => {
   const titleRef = useRef(null);
@@ -31,7 +32,10 @@ const Neighbours = () => {
           className="relative w-full h-[500px] flex flex-col items-center"
         >
           {borders.map((item: string, index: number) => (
-            <div className="absolute bottom-0 p-10  opacity-0 scale-0">
+            <div
+              key={index}
+              className="absolute bottom-0 p-10  opacity-0 scale-0"
+            >
               <div className="px-10 py-4 bg-black text-sky-200 border-2 rounded-lg border-sky-200 shadow-[0_0_2px_#fff,inset_0_0_2px_#fff,0_0_5px_#08f,0_0_15px_#08f,0_0_30px_#08f]">
                 {item}
               </div>
@@ -39,7 +43,7 @@ const Neighbours = () => {
           ))}
         </div>
       ) : (
-        <h1>No Border</h1>
+        <NoResult message="No Neighbouring Borders" />
       )}
     </section>
   );

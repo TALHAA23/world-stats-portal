@@ -1,8 +1,8 @@
 import gridAnimation from "@/app/_animations/gridAnimation";
 import showHeadingAnimation from "@/app/_animations/showHeading";
-import { useCountryData } from "@/app/_hooks/countryDataProvider";
-import anime from "animejs";
+import { useCountryData } from "@/app/_hooks/CountryDataProvider";
 import { useEffect, useRef, useState } from "react";
+import NoResult from "./NoResult";
 
 const Names = () => {
   const gridRef = useRef(null);
@@ -11,11 +11,9 @@ const Names = () => {
   const data = useCountryData();
   const [names, setNames] = useState<null | string[]>(null);
   useEffect(() => {
-    let undoAnimation: () => void;
     titleRef.current && showHeadingAnimation(titleRef.current);
     if (gridRef.current && nameHolder.current && names?.length)
-      undoAnimation = gridAnimation(gridRef.current, nameHolder.current, names);
-    return () => undoAnimation && undoAnimation();
+      gridAnimation(gridRef.current, nameHolder.current);
   }, [names]);
 
   useEffect(() => {
@@ -27,7 +25,7 @@ const Names = () => {
       <h1 ref={titleRef} className="section-heading text-right">
         Know As
       </h1>
-      {names && (
+      {names ? (
         <div className="relative w-full max-w-[700px] mx-auto my-32">
           <div
             ref={gridRef}
@@ -35,10 +33,14 @@ const Names = () => {
           >
             {Array(14 * 5)
               .fill(null)
-              .map(() => (
-                <span className="z-10 w-full aspect-square color3"></span>
+              .map((el, index) => (
+                <span
+                  key={index}
+                  className="z-10 w-full aspect-square color3"
+                ></span>
               ))}
             <p
+              data-names-list={names}
               ref={nameHolder}
               className="font--dela-gothic-one  absolute z-0 top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 text-3xl sm:text-7xl w-full text-center"
             >
@@ -46,6 +48,8 @@ const Names = () => {
             </p>
           </div>
         </div>
+      ) : (
+        <NoResult message="The country has not names" />
       )}
     </section>
   );
@@ -55,7 +59,7 @@ const extractNames = (data: any) => {
   const names = [];
   names.push(data?.name?.common, data?.name?.official);
   for (let [key, value] of Object.entries(data?.name?.nativeName))
-    names.push(value?.official);
+    names.push((value as { official: string })?.official);
   return names;
 };
 

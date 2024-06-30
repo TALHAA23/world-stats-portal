@@ -1,7 +1,8 @@
 import hightlightWord from "@/app/_animations/highlightWord";
 import showHeadingAnimation from "@/app/_animations/showHeading";
-import { useCountryData } from "@/app/_hooks/countryDataProvider";
+import { useCountryData } from "@/app/_hooks/CountryDataProvider";
 import { useEffect, useRef } from "react";
+import NoResult from "./NoResult";
 
 const CulturalPractices = () => {
   const titleRef = useRef(null);
@@ -23,7 +24,11 @@ const CulturalPractices = () => {
         ref={contentRef}
         className=" text-2xl text-justify mx-auto my-20 w-[80%] max-w-[500px] font-bold"
       >
-        {information && CreateWords(information)}
+        {information ? (
+          CreateWords(information)
+        ) : (
+          <NoResult message="We are not able to list this country cultural practices" />
+        )}
       </div>
     </section>
   );
@@ -34,29 +39,32 @@ const CreateWords = (information: string[][]) =>
     info.map(
       (subInfo, index) =>
         index < info.length - 1 &&
-        (index == 0 ? subInfo.split(" ") : [subInfo]).map((word) => (
-          <span
-            className={`relative  ${
-              index == 1 && "green-text-gradient special-parent"
-            }`}
-          >
-            {word}{" "}
-            {index == 1 && word.length > 0 && (
-              <>
-                <span
-                  id="custom-underline"
-                  className=" absolute h-[1px] w-full bg-yellow-800 rounded-full left-0 border-2  border-white bottom-0 shadow-[0_0_2px_#A9A9A9,inset_0_0_2px_#A9A9A9,0_0_5px_#D1D1D1,0_0_15px_#D1D1D1,0_0_30px_#D1D1D1]"
-                ></span>
-                <img
-                  id="icon-to-bubble-up"
-                  src={"/icons/" + info[2]}
-                  alt="icon"
-                  className=" absolute w-7 aspect-square -top-2 left-1/2 -translate-x-1/2 "
-                />
-              </>
-            )}
-          </span>
-        ))
+        (index == 0 ? subInfo.split(" ") : [subInfo]).map(
+          (word, innerIndex) => (
+            <span
+              key={innerIndex}
+              className={`relative  ${
+                index == 1 && "green-text-gradient special-parent"
+              }`}
+            >
+              {word}{" "}
+              {index == 1 && word.length > 0 && (
+                <>
+                  <span
+                    id="custom-underline"
+                    className=" absolute h-[1px] w-full bg-yellow-800 rounded-full left-0 border-2  border-white bottom-0 shadow-[0_0_2px_#A9A9A9,inset_0_0_2px_#A9A9A9,0_0_5px_#D1D1D1,0_0_15px_#D1D1D1,0_0_30px_#D1D1D1]"
+                  ></span>
+                  <img
+                    id="icon-to-bubble-up"
+                    src={"/icons/" + info[2]}
+                    alt="icon"
+                    className=" absolute w-7 aspect-square -top-2 left-1/2 -translate-x-1/2 "
+                  />
+                </>
+              )}
+            </span>
+          )
+        )
     )
   );
 

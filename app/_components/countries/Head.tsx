@@ -1,7 +1,7 @@
 import Flag from "./Flag";
 import SearchBar from "../SearchBar";
 import MoreButton from "./MoreButton";
-import { useCountryData } from "@/app/_hooks/countryDataProvider";
+import { useCountryData } from "@/app/_hooks/CountryDataProvider";
 
 const Head = () => {
   const data = useCountryData();
@@ -16,6 +16,7 @@ const Head = () => {
         >
           {data?.name?.common || "Search a country"}
         </h1>
+        <p id="error-el" className="text-white"></p>
         <SearchBar />
         <MoreButton />
       </div>

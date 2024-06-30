@@ -1,5 +1,5 @@
 import { FormEvent } from "react";
-import { useCountryDataUpdater } from "../_hooks/countryDataProvider";
+import { useCountryDataUpdater } from "../_hooks/CountryDataProvider";
 
 const SearchBar = () => {
   const updateCountryData = useCountryDataUpdater();

@@ -16,19 +16,42 @@ const CountryDataProvider = ({ children }: { children: ReactNode }) => {
   const [data, setData] = useState([]);
   const updateData = async (countryName: string) => {
     const name = countryName;
-    const data = await getCountryInformation(name);
-    setData(data);
+    try {
+      const data = await getCountryInformation(name);
+      resetError();
+      setData(data);
+    } catch (err) {
+      handlerError(err as Error);
+    }
   };
 
   useEffect(() => {
     const showCurrentCountry = async () => {
       const currentCoutnry = (await fetcher("api/ipinfo"))?.country;
-      const data =
-        currentCoutnry && (await getCountryInformation(currentCoutnry));
-      currentCoutnry && setData(data);
+      try {
+        const data =
+          currentCoutnry && (await getCountryInformation(currentCoutnry));
+        currentCoutnry && setData(data);
+      } catch (err) {
+        handlerError(err as Error);
+      }
     };
     showCurrentCountry();
   }, []);
+
+  const handlerError = (error: Error) => {
+    const errorElement = document.querySelector(
+      "#error-el"
+    ) as HTMLParagraphElement;
+    errorElement.innerHTML = error?.message;
+  };
+
+  const resetError = () => {
+    const errorElement = document.querySelector(
+      "#error-el"
+    ) as HTMLParagraphElement;
+    errorElement.innerHTML = "";
+  };
 
   return (
     <CountryDataContext.Provider value={[data, updateData]}>

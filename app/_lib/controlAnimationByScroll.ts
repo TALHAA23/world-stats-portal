@@ -2,7 +2,6 @@ const controlAnimationByScroll = (
   element: HTMLElement,
   animation: anime.AnimeInstance
 ) => {
-  console.log("Jelo");
   if (!element) {
     throw new Error("Can't control null element");
   }

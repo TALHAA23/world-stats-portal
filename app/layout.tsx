@@ -12,7 +12,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <nav className="color3 w-full h-[60px]">navbar</nav>
+        <nav className="color3 w-full h-[60px] flex items-center text-white font-bold text-color4 text-3xl p-2">
+          Country Stats
+        </nav>
         {children}
       </body>
     </html>

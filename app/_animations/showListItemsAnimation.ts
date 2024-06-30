@@ -4,7 +4,7 @@ import getRandomNumber from "../_utils/getRandomNumber";
 const ANIMATION_DURATION = 1000;
 const showListItemsAnimation = (element: HTMLElement) => {
   const animation = createAnimation(element);
-  createObserver(element, animation);
+  createObserver(animation).observe(element);
   return () => anime.remove(animation);
 };
 
@@ -26,16 +26,9 @@ const createAnimation = (parentElement: HTMLElement) => {
   return animation;
 };
 
-const createObserver = (
-  element: HTMLElement,
-  animation: anime.AnimeInstance
-) => {
-  const observer = new IntersectionObserver((entries) => {
-    if (entries[0].isIntersecting) {
-      animation.play();
-    } else animation.pause();
-  });
-  observer.observe(element);
-};
+const createObserver = (animation: anime.AnimeInstance) =>
+  new IntersectionObserver((entries) =>
+    entries[0].isIntersecting ? animation.play() : animation.pause()
+  );
 
 export default showListItemsAnimation;

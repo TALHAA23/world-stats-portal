@@ -1,20 +1,15 @@
 import anime from "animejs";
-
-const gridAnimation = (
-  element: HTMLElement,
-  textElement: HTMLElement,
-  names: string[]
-) => {
-  const animation = createAnimation(element, textElement, names);
+const gridAnimation = (element: HTMLElement, textElement: HTMLElement) => {
+  const animation = createAnimation(element, textElement);
   createObserver(animation).observe(element);
-  return () => anime.remove(animation);
 };
+
 const createAnimation = (
   element: HTMLElement,
-  textElement: HTMLElement,
-  names: string[]
-) => {
+  textElement: HTMLElement
+): anime.AnimeInstance => {
   let index = 1;
+  const names = textElement.dataset.namesList?.split(",") as string[];
   const animation = anime({
     targets: element.querySelectorAll("span"),
     scale: [
