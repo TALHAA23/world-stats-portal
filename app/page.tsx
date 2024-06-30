@@ -11,6 +11,7 @@ import CountryDataProvider from "./_hooks/CountryDataProvider";
 const page = () => {
   return (
     <CountryDataProvider>
+      <title>Country Stats</title>
       <Head />
       <Neighbours />
       <Demographics />
